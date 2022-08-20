@@ -1,8 +1,15 @@
 {
   "name": "adb-wrapper",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Node js Wrapper for ADB",
   "main": "index.js",
+  "keywords": [
+    "android",
+    "adb",
+    "android debugging",
+    "wrapper",
+    "node js wrapper adb"
+],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,10 +17,17 @@
     "type": "git",
     "url": "git+https://github.com/MrSharpp/adb-wrapper-node-js.git"
   },
-  "author": "sharpprogrammer2018@Gmail.com",
+  "author": {
+    "name": "Amir Alam",
+    "email": "sharpprogrammer2018@gmail.com"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/MrSharpp/adb-wrapper-node-js/issues"
   },
   "homepage": "https://github.com/MrSharpp/adb-wrapper-node-js#readme"
+  ,
+    "engines": {
+        "node": "*"
+    }
 }

@@ -4,7 +4,7 @@ const { spawn } = require('child_process');
 const EOL = require('os').EOL;
 
 let currentDevice = '';
-/** @type {string} if adb is not configured in the system enviroment variable path and want to provide a path externally provide the adb path with this variable */
+/** @type {string} external adb path */
 let explicitAdbPath = '';
 
 /**
