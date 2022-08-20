@@ -145,7 +145,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 ## Contact
 
-Your Name - [@amir-alam-44378416b](https://www.linkedin.com/in/amir-alam-44378416b) - sharpprogrammer2018@gmail.com
+Author Name - [@amir-alam-44378416b](https://www.linkedin.com/in/amir-alam-44378416b) - sharpprogrammer2018@gmail.com
 
 Project Link: [https://github.com/MrSharpp/adb-wrapper-node-js](https://github.com/MrSharpp/adb-wrapper-node-js)
 
