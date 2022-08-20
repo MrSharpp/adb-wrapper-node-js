@@ -10,33 +10,55 @@ let currentDevice = "";
 /** External adb path */
 let explicitAdbPath = "";
 
-const execCmd = (cmd: string | string[]): Promise<string> => {
+const execCmd = (
+  cmd: string | string[],
+  isShell?: boolean
+): Promise<string> => {
   return new Promise((resolve, reject) => {
+    let cmdArgs;
     !cmd
-      ? reject(new Error("No CMD"))
-      : (cmd = (cmd as string)
+      ? reject(
+          new Error("Invalid command data type, please provide string or array")
+        )
+      : !isShell
+      ? (cmdArgs = (cmd as string)
           .split(/\s{1,}/g)
           .join(" ")
-          .split(" "));
+          .split(" "))
+      : (cmdArgs = ["shell"]);
 
-    if (cmdRequiredDevices.includes(cmd[0]) && currentDevice == "")
+    if (cmdRequiredDevices.includes(cmdArgs[0]) && currentDevice == "")
       reject(
         new Error(
           "Please call setCurrentActiveDevice, to set the current active device"
         )
       );
-    else if (cmdRequiredDevices.includes(cmd[0]))
-      cmd = [`-s`, currentDevice, ...(cmd as string[])];
+    else if (cmdRequiredDevices.includes(cmdArgs[0]))
+      cmdArgs = [`-s`, currentDevice, ...(cmdArgs as string[])];
 
-    // console.log(cmd);
-    const cp = spawn("adb", cmd as string[], {
+    // console.log(cmdArgs as string[]);
+    const cp = spawn("adb", cmdArgs, {
+      shell: true,
       env: { ...process.env, PATH: `${process.env.PATH};${explicitAdbPath};` },
     });
+
+    if (isShell) {
+      cp.stdin.write(cmd);
+      cp.stdin.end();
+    }
+
     cp.stdout.on("data", (data) => resolve(data.toString()));
     cp.stderr.on("data", (data) => reject(new Error(data.toString())));
     cp.on("error", (data) => reject(new Error(data.toString())));
   });
 };
+
+const execShellCmd = (cmd: string | string[]) =>
+  typeof cmd != "string"
+    ? Promise.reject(
+        new Error("Invalid shell commands, please provide a string")
+      )
+    : execCmd(cmd, true);
 
 const isAdbInstalled = (): Promise<boolean> => {
   return new Promise((resolve, reject) => {
@@ -113,17 +135,24 @@ const uninstallApp = (packageId: string) =>
   !packageId
     ? Promise.reject(new Error("Invalid Apk package id"))
     : execCmd(`uninstall ${packageId}`);
+const getCurrentOpendedActivity = () =>
+  execShellCmd("dumpsys activity activities | grep mResumedActivity");
 
 const adb = {
   isAdbInstalled,
   reconnect,
   startServer,
   killServer,
+  tcpip,
+  connectRemote,
+  disconnectRemote,
   setAdbExplicitPath,
   setCurrentActiveDevice,
   deviceList,
   installApp,
   uninstallApp,
+  execShellCmd,
+  getCurrentOpendedActivity,
 };
 
 export default adb;
