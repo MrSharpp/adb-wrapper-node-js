@@ -2,19 +2,23 @@
 
 const { spawn } = require('child_process');
 const EOL = require('os').EOL;
+const { cmdRequiredDevices } = require('./constants');
 
 let currentDevice = '';
 /** @type {string} external adb path */
 let explicitAdbPath = '';
 
 /**
- * 
+
  * @param {string} cmd 
  * @returns {void}
  */
 const execCmd = (cmd) => {
     return new Promise((resolve, reject) => {
         !cmd ? reject(new Error("No CMD")) : cmd = cmd.split(/\s{1,}/g).join(" ").split(" ")
+        if(cmdRequiredDevices.includes(cmd[0]) && currentDevice == ''){
+           return console.error("this command requires device id to be set, please use setCurrentDevice function.")
+        }
         currentDevice == '' ? '' : cmd.push(`-s ${currentDevice}`)
         
         console.log(explicitAdbPath)
@@ -71,6 +75,11 @@ const isAdbInstalled = () => {
     })
 }
 
+/**
+ * 
+ * @param {string} device udid of the device
+ * @returns {void}
+ */
 const setCurrentActiveDevice = (device) => explicitAdbPath = device
 const setAdbExplicitPath = (path) => explicitAdbPath = path;
 const killServer = () => execCmd("kill-server")

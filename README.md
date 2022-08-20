@@ -61,14 +61,14 @@
 
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
-The adb wrapper provides a flexibal API to execute adb commands even if a user doesnt have ADB adb installed is his/her system. <br> A user could also paas the custom adb path to it.
+The adb wrapper provides a flexibal API to execute adb commands even if a user doesnt have ADB  installed in his/her system. <br> A user could also pass the custom adb path to it.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
-If you dont have ADB installed in your system, dont worry. It has inbuilt adb, you could also provide a path for adb explicity which the module will use.
+If you dont have ADB installed in your system, dont worry. It has inbuilt adb, you could also provide a path for adb explicity, which the module will use.
 
 ### Prerequisites
 
