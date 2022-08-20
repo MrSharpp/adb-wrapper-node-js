@@ -2,9 +2,10 @@
 
 import { spawn } from "child_process";
 import { EOL } from "os";
-import { cmdRequiredDevices } from "./constants";
+import { cmdRequiredDevices, filePathRegex } from "./constants";
+import fs from "fs";
 
-const currentDevice = "";
+let currentDevice = "";
 
 /** External adb path */
 let explicitAdbPath = "";
@@ -18,13 +19,16 @@ const execCmd = (cmd: string | string[]): Promise<string> => {
           .join(" ")
           .split(" "));
 
-    if (cmdRequiredDevices.includes(cmd[0]) && currentDevice == "") {
-      return console.error(
-        "this command requires device id to be set, please use setCurrentDevice function."
+    if (cmdRequiredDevices.includes(cmd[0]) && currentDevice == "")
+      reject(
+        new Error(
+          "Please call setCurrentActiveDevice, to set the current active device"
+        )
       );
-    }
-    currentDevice == "" ? "" : (cmd as string[]).push(`-s ${currentDevice}`);
-    console.log(explicitAdbPath);
+    else if (cmdRequiredDevices.includes(cmd[0]))
+      cmd = [`-s`, currentDevice, ...(cmd as string[])];
+
+    // console.log(cmd);
     const cp = spawn("adb", cmd as string[], {
       env: { ...process.env, PATH: `${process.env.PATH};${explicitAdbPath};` },
     });
@@ -68,8 +72,6 @@ const deviceList = (): Promise<DeviceListType> => {
               : null,
           };
         });
-
-        console.log(devicesObj);
         resolve(devicesObj);
       })
       .catch((err) => {
@@ -83,7 +85,7 @@ const deviceList = (): Promise<DeviceListType> => {
  * @param {string} device udid of the device
  */
 const setCurrentActiveDevice = (device: string) => {
-  explicitAdbPath = device;
+  currentDevice = device;
 };
 
 const setAdbExplicitPath = (path: string) => {
@@ -103,6 +105,14 @@ const connectRemote = (device: Remote) =>
   execCmd(`connect ${device.ip}:${device.port}`);
 const disconnectRemote = (device: Remote) =>
   execCmd(`disconnect ${device.ip}:${device.port}`);
+const installApp = (apkPath: string) =>
+  filePathRegex.test(apkPath) && fs.existsSync(apkPath)
+    ? execCmd(`install -r ${apkPath}`)
+    : Promise.reject(new Error("Invalid Apk Path"));
+const uninstallApp = (packageId: string) =>
+  !packageId
+    ? Promise.reject(new Error("Invalid Apk package id"))
+    : execCmd(`uninstall ${packageId}`);
 
 const adb = {
   isAdbInstalled,
@@ -112,6 +122,8 @@ const adb = {
   setAdbExplicitPath,
   setCurrentActiveDevice,
   deviceList,
+  installApp,
+  uninstallApp,
 };
 
 export default adb;
