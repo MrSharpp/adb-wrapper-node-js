@@ -24,16 +24,10 @@ const execCmd = (cmd: string | string[]): Promise<string> => {
       );
     }
     currentDevice == "" ? "" : (cmd as string[]).push(`-s ${currentDevice}`);
-
     console.log(explicitAdbPath);
-
     const cp = spawn("adb", cmd as string[], {
-      env: {
-        ...process.env,
-        PATH: `${process.env.PATH};${explicitAdbPath};`,
-      },
+      env: { ...process.env, PATH: `${process.env.PATH};${explicitAdbPath};` },
     });
-
     cp.stdout.on("data", (data) => resolve(data.toString()));
     cp.stderr.on("data", (data) => reject(new Error(data.toString())));
     cp.on("error", (data) => reject(new Error(data.toString())));
