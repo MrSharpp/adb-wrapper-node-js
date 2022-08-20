@@ -122,7 +122,6 @@ Here are the list of methods you can use.
 <b>Returns: {  type: string,
   udid: string,
   port: string}</b>
-<br>
 Returns Object of all detected devices by adb.
 
 * ``` setCurrentActiveDevice() ``` <br>
