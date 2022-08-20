@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "target": "ES3",
+    // "lib": ["ES2015"],
+    "types": ["node"],
+    "module": "CommonJS",
+    "esModuleInterop": true,
+    "moduleResolution": "node",
+    "sourceMap": true
+  }
+}
