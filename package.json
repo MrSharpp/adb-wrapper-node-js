@@ -59,6 +59,8 @@
     "src/**/*.{js,ts}": [
       "npm run format"
     ],
-    "dist/{main,module}.js": ["npm run uglify"]
+    "dist/{main,module}.js": [
+      "npm run uglify"
+    ]
   }
 }
