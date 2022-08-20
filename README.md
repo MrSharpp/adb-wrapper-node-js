@@ -7,8 +7,6 @@
 [![MIT License][license-shield]][license-url]
 [![LinkedIn][linkedin-shield]][linkedin-url] -->
 
-
-
 <!-- PROJECT LOGO -->
 <div align="center">
   <!-- <a href="https://github.com/othneildrew/Best-README-Template">
@@ -28,8 +26,6 @@
     <a href="https://github.com/MrSharpp/adb-wrapper-node-js/issues">Request Feature</a>
   </p>
 </div>
-
-
 
 <!-- TABLE OF CONTENTS -->
 <details>
@@ -54,18 +50,18 @@
   </ol>
 </details>
 
-
-
 <!-- ABOUT THE PROJECT -->
+
 ## About The Project
 
 <!-- [![Product Name Screen Shot][product-screenshot]](https://example.com) -->
 
-The adb wrapper provides a flexibal API to execute adb commands even if a user doesnt have ADB  installed in his/her system. <br> A user could also pass the custom adb path to it.
+The adb wrapper provides a flexibal API to execute adb commands even if a user doesnt have ADB installed in his/her system. <br> A user could also pass the custom adb path to it.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
+
 ## Getting Started
 
 If you dont have ADB installed in your system, dont worry. It has inbuilt adb, you could also provide a path for adb explicity, which the module will use.
@@ -73,11 +69,11 @@ If you dont have ADB installed in your system, dont worry. It has inbuilt adb, y
 ### Prerequisites
 
 Node js and an initialized npm folder
-* npm
+
+- npm
   ```sh
   npm install adb-wrapper
   ```
-
 
 <!-- ROADMAP -->
 <!-- ## Roadmap
@@ -95,29 +91,33 @@ See the [open issues](https://github.com/MrSharpp/adb-wrapper-node-js/issues) fo
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- USAGE EXAMPLES -->
+
 ## Usage
 
 After installation of the module into your project, you can take this simple example.
+
 ```javascript
-const ADB = require('adb-wrapper');
+const ADB = require("adb-wrapper");
 
-async function main(){
-    var getAdbInstalled = await ADB.isAdbInstalled();
+async function main() {
+  var getAdbInstalled = await ADB.isAdbInstalled();
 
-    if(!getAdbInstalled) return console.log("Adb is not installed");
+  if (!getAdbInstalled) return console.log("Adb is not installed");
 
-    var deviceList = await ADB.deviceList();
+  var deviceList = await ADB.deviceList();
 
-    console.log(`Connected Devices ${JSON.stringify(deviceList)}`);
+  console.log(`Connected Devices ${JSON.stringify(deviceList)}`);
 }
 
 main();
 ```
-There will be more functions in upcoming days as we are actively developing it. Watch it  to get notified whenever we add something new to it. 😉
+
+There will be more functions in upcoming days as we are actively developing it. Watch it to get notified whenever we add something new to it. 😉
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTRIBUTING -->
+
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
@@ -133,18 +133,16 @@ Don't forget to give the project a star! Thanks again!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 <!-- LICENSE -->
+
 ## License
 
 Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
 <!-- CONTACT -->
+
 ## Contact
 
 Your Name - [@amir-alam-44378416b](https://www.linkedin.com/in/amir-alam-44378416b) - sharpprogrammer2018@gmail.com
@@ -152,8 +150,6 @@ Your Name - [@amir-alam-44378416b](https://www.linkedin.com/in/amir-alam-4437841
 Project Link: [https://github.com/MrSharpp/adb-wrapper-node-js](https://github.com/MrSharpp/adb-wrapper-node-js)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
 
 <!-- ACKNOWLEDGMENTS -->
 <!-- ## Acknowledgments
@@ -171,10 +167,9 @@ Use this space to list resources you find helpful and would like to give credit 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p> -->
 
-
-
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
 [contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=for-the-badge
 [contributors-url]: https://github.com/MrSharpp/adb-wrapper-node-js/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/othneildrew/Best-README-Template.svg?style=for-the-badge
