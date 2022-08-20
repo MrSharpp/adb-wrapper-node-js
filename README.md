@@ -124,6 +124,7 @@ Here are the list of methods you can use.
   port: string}</b>
 <br>
 Returns Object of all detected devices by adb.
+
 * ``` setCurrentActiveDevice() ``` <br>
 <b>Prams: device (device udid)</b> <br>
 set the current active device 
