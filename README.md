@@ -38,7 +38,6 @@
       <a href="#getting-started">Getting Started</a>
       <ul>
         <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#usage">Usage</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
@@ -97,7 +96,7 @@ See the [open issues](https://github.com/MrSharpp/adb-wrapper-node-js/issues) fo
 After installation of the module into your project, you can take this simple example.
 
 ```javascript
-const ADB = require("adb-wrapper");
+import ADB from "adb-wrapper";
 
 async function main() {
   var getAdbInstalled = await ADB.isAdbInstalled();

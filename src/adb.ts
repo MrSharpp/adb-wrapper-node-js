@@ -90,11 +90,19 @@ const setAdbExplicitPath = (path: string) => {
   explicitAdbPath = path;
 };
 
+type Remote = {
+  ip: string;
+  port: number;
+};
+
 const killServer = () => execCmd("kill-server");
-
 const startServer = () => execCmd("start-server");
-
 const reconnect = () => execCmd("reconnect");
+const tcpip = (port: number) => execCmd(`tcpip ${port}`);
+const connectRemote = (device: Remote) =>
+  execCmd(`connect ${device.ip}:${device.port}`);
+const disconnectRemote = (device: Remote) =>
+  execCmd(`disconnect ${device.ip}:${device.port}`);
 
 const adb = {
   isAdbInstalled,
