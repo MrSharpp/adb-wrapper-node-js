@@ -37,7 +37,7 @@
     <li>
       <a href="#getting-started">Getting Started</a>
       <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#methods">Methods</a></li>
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
@@ -114,6 +114,57 @@ main();
 There will be more functions in upcoming days as we are actively developing it. Watch it to get notified whenever we add something new to it. 😉
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+# Methods
+Here are the list of methods you can use.
+- ``` deviceList() ``` <br>
+<b>Returns: {  type: string,
+  udid: string,
+  port: string}</b>
+<br>
+Returns Object of all detected devices by adb.
+- ``` setCurrentActiveDevice() ``` <br>
+<b>Prams: device (device udid)</b> <br>
+set the current active device 
+- ``` isAdbInstalled() ``` <br>
+<b>Returns: boolean</b> <br>
+detect if adb is installed or not
+- ``` setAdbExplicitPath() ``` <br>
+<b>Params: path (folder path of the adb)</b> <br>
+if the adb is not installed, you can manually download it and provide the path of the folder where adb.exe exsists
+- ``` killServer() ``` <br>
+kill the adb server
+- ``` startServer() ``` <br>
+start the adb server
+- ``` tcpip() ``` <br>
+<b>Prams: port (port on which to start the adb server listening to)</b> <br>
+adb listen to a port
+- ``` connectRemote() ``` <br>
+<b>Params: {ip( of the remote host), port (of remort host)} (folder path of the adb)</b> <br>
+connect to a device on a remote host
+- ``` disconnectRemote() ``` <br>
+<b>Params: {ip( of the remote host), port (of remort host)} (folder path of the adb)</b> <br>
+disconnect to a device on a remote host
+  <h3 style="color:red">Please set the current active device to which the command will executed, some function wont work. Do it by  calling setCurrentActiveDevice() and providing the udid of the device.
+  
+  
+  <br>
+  You can get the devices udid by calling the function deviceList()
+  </h3>
+- ``` installApp() ``` <br>
+<b>Params: apkPath (path of the apk)</b> <br>
+Install the app to the current active android device
+- ``` uninstallApp() ``` <br>
+<b>Params: packageId (the package id of the app to uninstall)</b> <br>
+uninstall the app given by the package id
+- ``` execShellCmd() ``` <br>
+<b>Params: shellCmd (shell command) note: dont include `shell` in it</b> <br>
+its equivalent to adb shell. you can execute the shell commands using it
+- ``` getCurrentOpendedActivity() ``` <br>
+<b>Returns: packageInfo (of the current Activity Openned)</b> <br>
+it will return the info of the current openned activity, including the package id of the app.
+
 
 <!-- CONTRIBUTING -->
 
