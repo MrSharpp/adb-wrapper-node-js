@@ -1,6 +1,6 @@
 {
   "name": "adb-wrapper",
-  "version": "0.3.2",
+  "version": "1.0.0",
   "description": "Node js Wrapper for ADB",
   "source": "src/index.ts",
   "main": "dist/main.js",
